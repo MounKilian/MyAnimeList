@@ -6,15 +6,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -22,49 +18,52 @@ public class FXMLController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-
     @FXML
     private HBox cardLayout;
     @FXML
     private HBox cardLayout1;
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        List<Anime> winterAnime = null;
+        Anime anime = null;
+        anime = new Anime();
         try {
-            winterAnime = new ArrayList<>(Read("dataWinter.csv"));
+            anime.setAnime(Read("dataWinter.csv"));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         int i = 0;
         try {
-            for (i = 0; i < winterAnime.size(); i++) {
+            for (i = 0; i < anime.getAnime().size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/fxml/card.fxml"));
                 HBox cardBox = fxmlLoader.load();
                 CardController cardController = fxmlLoader.getController();
-                cardController.setData(winterAnime.get(i));
-                cardBox.setId((winterAnime.get(i)).getName());
+                cardController.setData(anime.getAnime().get(i), false);
+                cardBox.setId((anime.getAnime().get(i)).getName());
+                cardController.affect(cardBox);
                 cardLayout.getChildren().add(cardBox);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         i=0;
-        List<Anime> emblematicAnime = null;
+        Anime anime1 = null;
+        anime1 = new Anime();
         try {
-            emblematicAnime = new ArrayList<>(Read("dataEmblematic.csv"));
+            anime1.setAnime(Read("dataEmblematic.csv"));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         try {
-            for (i = 0; i < emblematicAnime.size(); i++) {
+            for (i = 0; i < anime1.getAnime().size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/fxml/card.fxml"));
                 HBox cardBox = fxmlLoader.load();
                 CardController cardController = fxmlLoader.getController();
-                cardController.setData(emblematicAnime.get(i));
+                cardController.setData(anime1.getAnime().get(i), false);
+                cardBox.setId((anime1.getAnime().get(i)).getName());
+                cardController.affect(cardBox);
                 cardLayout1.getChildren().add(cardBox);
             }
         } catch (IOException e) {
@@ -82,6 +81,10 @@ public class FXMLController implements Initializable {
             anime.setName(sc.next());
             anime.setType(sc.next());
             anime.setImgSrc(sc.next());
+            anime.setEpisodeAndSeason(sc.next());
+            anime.setRank(sc.next());
+            anime.setDirector(sc.next());
+            anime.setDescription(sc.next());
             card.add(anime);
         }
         sc.close();
