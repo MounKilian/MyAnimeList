@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
@@ -26,6 +27,7 @@ public class MainApp extends Application {
         Scene scene = new Scene(loadFXML(fxml));
         stage.setTitle(title);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -35,8 +37,5 @@ public class MainApp extends Application {
     }
 
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
+    public static void main(String[] args){launch(args);}
 }
