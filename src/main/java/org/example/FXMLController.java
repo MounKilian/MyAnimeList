@@ -21,6 +21,8 @@ public class FXMLController implements Initializable {
 
     @FXML
     private HBox cardLayout;
+    @FXML
+    private HBox cardLayout1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -34,6 +36,20 @@ public class FXMLController implements Initializable {
                 CardController cardController = fxmlLoader.getController();
                 cardController.setData(winterAnime.get(i));
                 cardLayout.getChildren().add(cardBox);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        i=0;
+        List<Anime> emblematicAnime = new ArrayList<>(emblematicAnime());
+        try {
+            for (i = 0; i < emblematicAnime.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/fxml/card.fxml"));
+                HBox cardBox = fxmlLoader.load();
+                CardController cardController = fxmlLoader.getController();
+                cardController.setData(emblematicAnime.get(i));
+                cardLayout1.getChildren().add(cardBox);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -75,5 +91,40 @@ public class FXMLController implements Initializable {
         card.add(anime);
 
         return card;
+    }
+
+    private List<Anime> emblematicAnime() {
+        List<Anime> cardEmbelmatic = new ArrayList<>();
+        Anime anime = new Anime();
+        anime.setName("Chainsaw Man");
+        anime.setType("Action, Drama, Dark Fantasy");
+        anime.setImgSrc("/img/chainsaw.jpg");
+        cardEmbelmatic.add(anime);
+
+        anime = new Anime();
+        anime.setName("Jujutsu Kaisen");
+        anime.setType("Action, Dark fantasy");
+        anime.setImgSrc("/img/jujutsu.jpg");
+        cardEmbelmatic.add(anime);
+
+        anime = new Anime();
+        anime.setName("Demon Slayer");
+        anime.setType("Action, Adventure, Dark fantasy");
+        anime.setImgSrc("/img/demonslayer.jpg");
+        cardEmbelmatic.add(anime);
+
+        anime = new Anime();
+        anime.setName("L’Attaque Des  Titans");
+        anime.setType("Action, Tragedy, Dark fantasy");
+        anime.setImgSrc("/img/lattaquedestitans.jpg");
+        cardEmbelmatic.add(anime);
+
+        anime = new Anime();
+        anime.setName("One Piece");
+        anime.setType("Nekketsu, Adventure, Comedy");
+        anime.setImgSrc("/img/onepiece.jpg");
+        cardEmbelmatic.add(anime);
+
+        return cardEmbelmatic;
     }
 }

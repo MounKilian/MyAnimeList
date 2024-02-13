@@ -16,11 +16,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1072.0" style="-fx-background-color: rgba(21, 20, 19, 1);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.FXMLController">
    <children>
-      <ScrollPane prefHeight="600.0" prefWidth="1072.0">
+      <ScrollPane layoutY="-3.0" prefHeight="603.0" prefWidth="1069.0" style="-fx-background-color: black; -fx-border-color: black;" stylesheets="@../styles/Styles.css">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1402.0" prefWidth="1057.0" style="-fx-background-color: rgba(21, 20, 19, 1);">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1315.0" prefWidth="1057.0" style="-fx-background-color: rgba(21, 20, 19, 1); -fx-border-color: rgba(21, 20, 19, 1);">
                <children>
-                  <HBox prefHeight="85.0" prefWidth="1057.0" style="-fx-background-color: rgba(36, 37, 42, 1);">
+                  <HBox prefHeight="85.0" prefWidth="1057.0" style="-fx-background-color: rgba(36, 37, 42, 1); -fx-border-color: rgba(21, 20, 19, 1);">
                      <children>
                         <ImageView fitHeight="81.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -74,7 +74,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <VBox layoutX="29.0" layoutY="85.0" prefHeight="850.0" prefWidth="1028.0">
+                  <VBox layoutX="29.0" layoutY="85.0" prefHeight="1403.0" prefWidth="1028.0">
                      <children>
                         <Label prefHeight="118.0" prefWidth="324.0" text="Winter 2024 Anime" textFill="WHITE">
                            <font>
@@ -87,10 +87,13 @@
                               <Insets top="30.0" />
                            </padding>
                         </Label>
-                        <ScrollPane prefHeight="400.0" prefWidth="1028.0">
+                        <ScrollPane prefHeight="390.0" prefWidth="1026.0" style="-fx-border-color: rgba(21, 20, 19, 1); -fx-background-color: rgba(21, 20, 19, 1);" stylesheets="@../styles/Horizontal.css">
                            <content>
-                              <HBox fx:id="cardLayout" prefHeight="385.0" prefWidth="1489.0" style="-fx-background-color: rgba(21, 20, 19, 1); -fx-border-color: rgba(21, 20, 19, 1);" />
+                              <HBox fx:id="cardLayout" prefHeight="383.0" prefWidth="1489.0" style="-fx-background-color: rgba(21, 20, 19, 1); -fx-border-color: rgba(21, 20, 19, 1);" stylesheets="@../styles/Horizontal.css" />
                            </content>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
                         </ScrollPane>
                         <Label prefHeight="118.0" prefWidth="324.0" text="Emblematic anime" textFill="WHITE">
                            <font>
@@ -103,6 +106,11 @@
                               <Insets top="30.0" />
                            </padding>
                         </Label>
+                        <ScrollPane layoutX="10.0" layoutY="128.0" prefHeight="392.0" prefWidth="1028.0" style="-fx-background-color: rgba(21, 20, 19, 1); -fx-border-color: rgba(21, 20, 19, 1);" stylesheets="@../styles/Horizontal.css">
+                           <content>
+                              <HBox fx:id="cardLayout1" prefHeight="385.0" prefWidth="1489.0" style="-fx-background-color: rgba(21, 20, 19, 1); -fx-border-color: rgba(21, 20, 19, 1);" />
+                           </content>
+                        </ScrollPane>
                      </children>
                   </VBox>
                </children>
