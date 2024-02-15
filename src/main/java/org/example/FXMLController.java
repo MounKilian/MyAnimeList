@@ -24,6 +24,9 @@ public class FXMLController implements Initializable {
     private Scene scene;
     private Parent root;
     @FXML
+    private TextField animeDescriptionAdd;
+
+    @FXML
     private TextField animeDirectoryAdd;
 
     @FXML
@@ -117,17 +120,40 @@ public class FXMLController implements Initializable {
         Write("dataWinter.csv");
     }
 
+    @FXML
+    void delete(ActionEvent event) throws FileNotFoundException {
+        Delete("dataWinter.csv");
+    }
+
     public void Write(String filename) throws FileNotFoundException {
         List<Anime> animes;
         animes = Read(filename);
         try (PrintWriter writer = new PrintWriter(filename)) {
             StringBuilder sb = new StringBuilder();
             for (Anime anime : animes) {
-                sb.append(anime.getName()).append(';').append(anime.getType()).append(";").append(anime.getImgSrc()).append(";").append(anime.getEpisodeAndSeason()).append(";").append(anime.getRank()).append(";").append(anime.getDirector()).append(";").append(anime.getDescription()).append(";");
+                sb.append(anime.getName()).append('<').append(';').append('>').append(anime.getType()).append('<').append(';').append('>').append(anime.getImgSrc()).append('<').append(';').append('>').append(anime.getEpisodeAndSeason()).append('<').append(';').append('>').append(anime.getRank()).append('<').append(';').append('>').append(anime.getDirector()).append('<').append(';').append('>').append(anime.getDescription()).append('<').append(';').append('>');
             }
             sb.append("\r\n");
-            sb.append(animeNameAdd.getText()).append(';').append(animeGenreAdd.getText()).append(";").append("/img/logo.png").append(";").append(animeSeasonAdd.getText()).append(";").append(animeRankedAdd.getText()).append(";").append(animeDirectoryAdd.getText()).append(";").append("/img/logo.png").append(";");
+            sb.append(animeNameAdd.getText()).append('<').append(';').append('>').append(animeGenreAdd.getText()).append('<').append(';').append('>').append("/img/logo.png").append('<').append(';').append('>').append(animeSeasonAdd.getText()).append('<').append(';').append('>').append(animeRankedAdd.getText()).append('<').append(';').append('>').append(animeDirectoryAdd.getText()).append('<').append(';').append('>').append(animeDescriptionAdd.getText()).append('<').append(';').append('>');
             writer.write(sb.toString());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void Delete(String filename) throws FileNotFoundException {
+        List<Anime> animes;
+        animes = Read(filename);
+        try (PrintWriter writer = new PrintWriter(filename)) {
+            StringBuilder sb = new StringBuilder();
+            for (Anime anime : animes) {
+                if (anime.getName().replace("\r\n","").equals(animeNameAdd.getText())) {
+                    System.out.println("ok");
+                } else {
+                    sb.append(anime.getName()).append('<').append(';').append('>').append(anime.getType()).append('<').append(';').append('>').append(anime.getImgSrc()).append('<').append(';').append('>').append(anime.getEpisodeAndSeason()).append('<').append(';').append('>').append(anime.getRank()).append('<').append(';').append('>').append(anime.getDirector()).append('<').append(';').append('>').append(anime.getDescription()).append('<').append(';').append('>');
+                }
+            }
+           writer.write(sb.toString());
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
@@ -137,7 +163,7 @@ public class FXMLController implements Initializable {
         List<Anime> card = new ArrayList<>();
         File getCSVFiles = new File(filename);
         Scanner sc = new Scanner(getCSVFiles);
-        sc.useDelimiter(";");
+        sc.useDelimiter("<;>");
         while (sc.hasNext()) {
             Anime anime = new Anime();
             anime.setName(sc.next());

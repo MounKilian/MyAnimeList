@@ -142,9 +142,28 @@
                   </TextField>
                </children>
             </VBox>
+            <VBox layoutX="10.0" layoutY="355.0" prefHeight="114.0" prefWidth="1016.0" spacing="5.0">
+               <children>
+                  <Label prefHeight="20.0" prefWidth="1039.0" text="Description" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="animeDescriptionAdd" prefHeight="37.0" prefWidth="707.0" promptText="Description">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
          </children>
       </VBox>
-      <Button alignment="CENTER" layoutX="475.0" layoutY="533.0" mnemonicParsing="false" onAction="#add" text="ADD" textAlignment="CENTER">
+      <Button alignment="CENTER" layoutX="475.0" layoutY="534.0" mnemonicParsing="false" onAction="#add" text="ADD" textAlignment="CENTER">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" layoutX="579.0" layoutY="534.0" mnemonicParsing="false" onAction="#delete" text="DELETE" textAlignment="CENTER">
          <font>
             <Font size="21.0" />
          </font>

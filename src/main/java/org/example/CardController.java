@@ -109,7 +109,7 @@ public class CardController {
 
     public Anime search(String id) throws FileNotFoundException {
         try (Scanner sc1 = new Scanner(new File("dataEmblematic.csv"))) {
-            sc1.useDelimiter(";");
+            sc1.useDelimiter("<;>");
             while (sc1.hasNext()) {
                 Anime anime1 = new Anime();
                 String name = sc1.next();
@@ -127,7 +127,7 @@ public class CardController {
         }
 
         try (Scanner sc = new Scanner(new File("dataWinter.csv"))) {
-            sc.useDelimiter(";");
+            sc.useDelimiter("<;>");
             while (sc.hasNext()) {
                 Anime anime = new Anime();
                 String name = sc.next();
