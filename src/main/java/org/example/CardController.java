@@ -74,9 +74,23 @@ public class CardController {
     }
 
     @FXML
+    void modify(ActionEvent event) throws IOException {
+        FXMLController fxmlController = new FXMLController();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/modify.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        fxmlController.Delete("dataWinter.csv", animeName.getText(), event, true);
+        fxmlController.Delete("dataEmblematic.csv", animeName.getText(), event, true);
+    }
+
+    @FXML
     void delete(ActionEvent event) throws IOException {
         FXMLController FxmlController = new FXMLController();
-        FxmlController.Delete("dataWinter.csv", animeName.getText(), event);
+        FxmlController.Delete("dataWinter.csv", animeName.getText(), event, false);
+        FxmlController.Delete("dataEmblematic.csv", animeName.getText(), event, false);
     }
 
     @FXML

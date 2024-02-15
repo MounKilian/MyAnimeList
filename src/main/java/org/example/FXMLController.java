@@ -43,6 +43,24 @@ public class FXMLController implements Initializable {
     private TextField animeSeasonAdd;
 
     @FXML
+    private TextField animeDescriptionModify;
+
+    @FXML
+    private TextField animeDirectoryModify;
+
+    @FXML
+    private TextField animeGenreModify;
+
+    @FXML
+    private TextField animeNameModify;
+
+    @FXML
+    private TextField animeRankedModify;
+
+    @FXML
+    private TextField animeSeasonModify;
+
+    @FXML
     private HBox cardLayout;
 
     @FXML
@@ -72,7 +90,7 @@ public class FXMLController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        i=0;
+        i = 0;
         Anime anime1 = null;
         anime1 = new Anime();
         try {
@@ -100,7 +118,7 @@ public class FXMLController implements Initializable {
     void goToMyList(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add.fxml"));
         root = loader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -110,7 +128,7 @@ public class FXMLController implements Initializable {
     void backToHomePage(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/primary.fxml"));
         root = loader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -121,7 +139,7 @@ public class FXMLController implements Initializable {
         Write("dataWinter.csv");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/primary.fxml"));
         root = loader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -143,7 +161,34 @@ public class FXMLController implements Initializable {
         }
     }
 
-    public void Delete(String filename, String animeName, ActionEvent event) throws IOException {
+    @FXML
+    void confirmModify(ActionEvent event) throws IOException {
+        WriteModif("dataWinter.csv");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/primary.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void WriteModif(String filename) throws FileNotFoundException {
+        List<Anime> animes;
+        animes = Read(filename);
+        try (PrintWriter writer = new PrintWriter(filename)) {
+            StringBuilder sb = new StringBuilder();
+            for (Anime anime : animes) {
+                sb.append(anime.getName()).append('<').append(';').append('>').append(anime.getType()).append('<').append(';').append('>').append(anime.getImgSrc()).append('<').append(';').append('>').append(anime.getEpisodeAndSeason()).append('<').append(';').append('>').append(anime.getRank()).append('<').append(';').append('>').append(anime.getDirector()).append('<').append(';').append('>').append(anime.getDescription()).append('<').append(';').append('>');
+            }
+            sb.append("\r\n");
+            sb.append(animeNameModify.getText()).append('<').append(';').append('>').append(animeGenreModify.getText()).append('<').append(';').append('>').append("/img/logo.png").append('<').append(';').append('>').append(animeSeasonModify.getText()).append('<').append(';').append('>').append(animeRankedModify.getText()).append('<').append(';').append('>').append(animeDirectoryModify.getText()).append('<').append(';').append('>').append(animeDescriptionModify.getText()).append('<').append(';').append('>');
+            writer.write(sb.toString());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void Delete(String filename, String animeName, ActionEvent event, boolean modify) throws IOException {
         List<Anime> animes;
         animes = Read(filename);
         try (PrintWriter writer = new PrintWriter(filename)) {
@@ -153,16 +198,18 @@ public class FXMLController implements Initializable {
                     sb.append(anime.getName()).append('<').append(';').append('>').append(anime.getType()).append('<').append(';').append('>').append(anime.getImgSrc()).append('<').append(';').append('>').append(anime.getEpisodeAndSeason()).append('<').append(';').append('>').append(anime.getRank()).append('<').append(';').append('>').append(anime.getDirector()).append('<').append(';').append('>').append(anime.getDescription()).append('<').append(';').append('>');
                 }
             }
-           writer.write(sb.toString());
+            writer.write(sb.toString());
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/primary.fxml"));
-        root = loader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        if (filename.equals("dataEmblematic.csv") && !modify){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/primary.fxml"));
+            root = loader.load();
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     public List<Anime> Read(String filename) throws FileNotFoundException {
