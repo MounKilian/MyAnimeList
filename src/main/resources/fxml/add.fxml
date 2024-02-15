@@ -163,10 +163,5 @@
             <Font size="21.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" layoutX="579.0" layoutY="534.0" mnemonicParsing="false" onAction="#delete" text="DELETE" textAlignment="CENTER">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

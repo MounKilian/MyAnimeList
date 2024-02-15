@@ -82,6 +82,14 @@
                                     <Font size="13.0" />
                                  </font>
                               </Label>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#delete" prefHeight="39.0" prefWidth="109.0" text="DELETE" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="300.0" />
+                                 </VBox.margin>
+                              </Button>
                            </children>
                         </VBox>
                      </children>

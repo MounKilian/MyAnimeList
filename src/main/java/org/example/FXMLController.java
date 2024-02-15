@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -116,13 +117,14 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    void add(ActionEvent event) throws FileNotFoundException {
+    void add(ActionEvent event) throws IOException {
         Write("dataWinter.csv");
-    }
-
-    @FXML
-    void delete(ActionEvent event) throws FileNotFoundException {
-        Delete("dataWinter.csv");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/primary.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void Write(String filename) throws FileNotFoundException {
@@ -141,15 +143,13 @@ public class FXMLController implements Initializable {
         }
     }
 
-    public void Delete(String filename) throws FileNotFoundException {
+    public void Delete(String filename, String animeName, ActionEvent event) throws IOException {
         List<Anime> animes;
         animes = Read(filename);
         try (PrintWriter writer = new PrintWriter(filename)) {
             StringBuilder sb = new StringBuilder();
             for (Anime anime : animes) {
-                if (anime.getName().replace("\r\n","").equals(animeNameAdd.getText())) {
-                    System.out.println("ok");
-                } else {
+                if (!Objects.equals(anime.getName(), animeName)) {
                     sb.append(anime.getName()).append('<').append(';').append('>').append(anime.getType()).append('<').append(';').append('>').append(anime.getImgSrc()).append('<').append(';').append('>').append(anime.getEpisodeAndSeason()).append('<').append(';').append('>').append(anime.getRank()).append('<').append(';').append('>').append(anime.getDirector()).append('<').append(';').append('>').append(anime.getDescription()).append('<').append(';').append('>');
                 }
             }
@@ -157,6 +157,12 @@ public class FXMLController implements Initializable {
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/primary.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public List<Anime> Read(String filename) throws FileNotFoundException {

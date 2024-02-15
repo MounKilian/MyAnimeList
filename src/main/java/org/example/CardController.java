@@ -74,6 +74,12 @@ public class CardController {
     }
 
     @FXML
+    void delete(ActionEvent event) throws IOException {
+        FXMLController FxmlController = new FXMLController();
+        FxmlController.Delete("dataWinter.csv", animeName.getText(), event);
+    }
+
+    @FXML
     void goToMyList(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add.fxml"));
         root = loader.load();
