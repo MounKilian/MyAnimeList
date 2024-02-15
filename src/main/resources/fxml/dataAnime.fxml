@@ -14,15 +14,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1072.0" style="-fx-background-color: rgba(21, 20, 19, 1);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.CardController">
    <children>
-      <Button fx:id="cardButton" alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="103.0" mnemonicParsing="false" prefHeight="435.0" prefWidth="1050.0" style="-fx-background-color: rgba(21, 20, 19, 1); -fx-border-color: rgba(21, 20, 19, 1);" textAlignment="CENTER">
+      <Button fx:id="cardButton" alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="95.0" mnemonicParsing="false" prefHeight="435.0" prefWidth="1050.0" style="-fx-background-color: rgba(21, 20, 19, 1); -fx-border-color: rgba(21, 20, 19, 1);" textAlignment="CENTER">
          <graphic>
             <VBox alignment="CENTER" prefHeight="423.0" prefWidth="1003.0">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <VBox prefHeight="72.0" prefWidth="652.0">
+                        <VBox prefHeight="99.0" prefWidth="848.0">
                            <children>
-                              <Label fx:id="animeName" prefHeight="36.0" prefWidth="746.0" text="Solo Leveling" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                              <Label fx:id="animeName" prefHeight="74.0" prefWidth="677.0" text="Solo Leveling" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="25.0" />
                                  </font>
@@ -30,7 +30,7 @@
                                     <Insets left="2.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label fx:id="animeType" contentDisplay="CENTER" prefHeight="36.0" prefWidth="340.0" text="Action, Dark fantasy" textAlignment="CENTER" textFill="#9a9a9a" wrapText="true">
+                              <Label fx:id="animeType" contentDisplay="CENTER" prefHeight="65.0" prefWidth="375.0" text="Action, Dark fantasy" textAlignment="CENTER" textFill="#9a9a9a" wrapText="true">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -130,7 +130,7 @@
                   <Insets left="60.0" />
                </padding>
             </HBox>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: rgba(36, 37, 42, 1);" textAlignment="CENTER" textFill="#24252a">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#goToMyList" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: rgba(36, 37, 42, 1);" textAlignment="CENTER" textFill="#24252a">
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -3,14 +3,19 @@ package org.example;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.*;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -19,7 +24,23 @@ public class FXMLController implements Initializable {
     private Scene scene;
     private Parent root;
     @FXML
+    private TextField animeDirectoryAdd;
+
+    @FXML
+    private TextField animeGenreAdd;
+
+    @FXML
+    private TextField animeNameAdd;
+
+    @FXML
+    private TextField animeRankedAdd;
+
+    @FXML
+    private TextField animeSeasonAdd;
+
+    @FXML
     private HBox cardLayout;
+
     @FXML
     private HBox cardLayout1;
 
@@ -68,6 +89,47 @@ public class FXMLController implements Initializable {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void goToMyList(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void backToHomePage(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/primary.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void add(ActionEvent event) throws FileNotFoundException {
+        Write("dataWinter.csv");
+    }
+
+    public void Write(String filename) throws FileNotFoundException {
+        List<Anime> animes;
+        animes = Read(filename);
+        try (PrintWriter writer = new PrintWriter(filename)) {
+            StringBuilder sb = new StringBuilder();
+            for (Anime anime : animes) {
+                sb.append(anime.getName()).append(';').append(anime.getType()).append(";").append(anime.getImgSrc()).append(";").append(anime.getEpisodeAndSeason()).append(";").append(anime.getRank()).append(";").append(anime.getDirector()).append(";").append(anime.getDescription()).append(";");
+            }
+            sb.append("\r\n");
+            sb.append(animeNameAdd.getText()).append(';').append(animeGenreAdd.getText()).append(";").append("/img/logo.png").append(";").append(animeSeasonAdd.getText()).append(";").append(animeRankedAdd.getText()).append(";").append(animeDirectoryAdd.getText()).append(";").append("/img/logo.png").append(";");
+            writer.write(sb.toString());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
         }
     }
 

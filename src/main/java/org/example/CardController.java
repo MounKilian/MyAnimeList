@@ -74,6 +74,16 @@ public class CardController {
     }
 
     @FXML
+    void goToMyList(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
     void backToHomePage(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/primary.fxml"));
         root = loader.load();
@@ -84,7 +94,7 @@ public class CardController {
     }
 
     @FXML
-    public void switchSceneMenue(ActionEvent event) throws IOException {
+    public void switchSceneMenu(ActionEvent event) throws IOException {
         String button = ((Button)event.getSource()).getId();
         Anime anime = search(button);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dataAnime.fxml"));
