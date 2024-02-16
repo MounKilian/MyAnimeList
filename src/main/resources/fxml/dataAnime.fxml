@@ -73,7 +73,7 @@
                                     <Insets left="20.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label fx:id="animeDescription" alignment="TOP_CENTER" prefHeight="259.0" prefWidth="732.0" text="Ce qui ne vous tue pas vous rend plus fort ! Mais ce dicton ne s'applique pas au chasseur le plus faible de toute l'humanité, Jinwoo Sung. Après avoir été mortellement blessé lorsqu'il est tombé par hasard sur un double donjon caché, Jinwoo est miraculeusement rescapé. Au bord de la mort, il entrevoit une quête et saisit une opportunité qui lui permet dès lors de gagner en puissance très rapidement. À présent, il souhaite découvrir les secrets de ses pouvoirs et du donjon qui les a engendrés." textFill="WHITE" wrapText="true">
+                              <Label fx:id="animeDescription" alignment="TOP_LEFT" prefHeight="259.0" prefWidth="732.0" text="Ce qui ne vous tue pas vous rend plus fort ! Mais ce dicton ne s'applique pas au chasseur le plus faible de toute l'humanité, Jinwoo Sung. Après avoir été mortellement blessé lorsqu'il est tombé par hasard sur un double donjon caché, Jinwoo est miraculeusement rescapé. Au bord de la mort, il entrevoit une quête et saisit une opportunité qui lui permet dès lors de gagner en puissance très rapidement. À présent, il souhaite découvrir les secrets de ses pouvoirs et du donjon qui les a engendrés." textFill="WHITE" wrapText="true">
                                  <VBox.margin>
                                     <Insets left="20.0" top="20.0" />
                                  </VBox.margin>

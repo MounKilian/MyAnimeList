@@ -43,22 +43,22 @@ public class FXMLController implements Initializable {
     private TextField animeSeasonAdd;
 
     @FXML
-    private TextField animeDescriptionModify;
+    TextField animeDescriptionModify;
 
     @FXML
-    private TextField animeDirectoryModify;
+    TextField animeDirectoryModify;
 
     @FXML
-    private TextField animeGenreModify;
+    TextField animeGenreModify;
 
     @FXML
-    private TextField animeNameModify;
+    TextField animeNameModify;
 
     @FXML
-    private TextField animeRankedModify;
+    TextField animeRankedModify;
 
     @FXML
-    private TextField animeSeasonModify;
+    TextField animeSeasonModify;
 
     @FXML
     private HBox cardLayout;
@@ -164,6 +164,7 @@ public class FXMLController implements Initializable {
     @FXML
     void confirmModify(ActionEvent event) throws IOException {
         WriteModif("dataWinter.csv");
+        WriteModif("dataEmblematic.csv");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/primary.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

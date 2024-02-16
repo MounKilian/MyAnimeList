@@ -75,10 +75,22 @@ public class CardController {
 
     @FXML
     void modify(ActionEvent event) throws IOException {
-        FXMLController fxmlController = new FXMLController();
+        System.out.println(animeName.getText());
+        Anime anime = search(animeName.getText());
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/modify.fxml"));
-        root = loader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Parent root = loader.load();
+
+        FXMLController fxmlController = loader.getController();
+
+        fxmlController.animeNameModify.setText(anime.getName());
+        fxmlController.animeGenreModify.setText(anime.getType());
+        fxmlController.animeDirectoryModify.setText(anime.getDirector());
+        fxmlController.animeSeasonModify.setText(anime.getEpisodeAndSeason());
+        fxmlController.animeRankedModify.setText(anime.getRank());
+        fxmlController.animeDescriptionModify.setText(anime.getDescription());
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
