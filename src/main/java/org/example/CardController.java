@@ -62,11 +62,20 @@ public class CardController {
     private TextField searchFilter;
 
     ArrayList<String> nameList = new ArrayList<>(
-            Arrays.asList("Chainsaw Man", "Jujutsu Kaisen","L’Attaque Des Titans","One Piece","Solo Leveling","Bucchigiri?!","The Weakest Tamer Began a Journey to Pick Up Trash", "Metallic Rouge","The Demon Prince of Momochi House")
+            Arrays.asList("Demon Slayer", "Chainsaw Man", "Jujutsu Kaisen","L’Attaque Des Titans","One Piece","Solo Leveling","Bucchigiri?!","The Weakest Tamer Began a Journey to Pick Up Trash", "Metallic Rouge","The Demon Prince of Momochi House")
     );
 
     @FXML
-    void search(KeyEvent event){
+    void search(KeyEvent event) throws FileNotFoundException {
+        FXMLController fxml = new FXMLController();
+        ArrayList<Anime> animeList = new ArrayList<>(fxml.Read("dataWinter.csv"));
+        for (Anime animes : animeList){
+            System.out.println("\""+nameList);
+            System.out.println("\""+animes.getName().replace("\r\n", ""));
+            if (!nameList.contains(animes.getName().replace("\r\n", ""))){
+                nameList.add(animes.getName().replace("\r\n", ""));
+            }
+        }
         listView.getItems().clear();
         listView.getItems().addAll(searchList(searchFilter.getText(), nameList));
         listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -202,8 +211,6 @@ public class CardController {
             while (sc1.hasNext()) {
                 Anime anime1 = new Anime();
                 String name = sc1.next();
-                System.out.println("\"" + name);
-                System.out.println("\"" + id);
                 if (Objects.equals(id, name)) {
                     anime1.setName(name);
                     anime1.setType(sc1.next());
