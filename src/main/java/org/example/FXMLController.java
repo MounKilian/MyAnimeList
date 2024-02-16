@@ -14,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -68,8 +67,7 @@ public class FXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Anime anime = null;
-        anime = new Anime();
+        Anime anime = new Anime();
         try {
             anime.setAnime(Read("dataWinter.csv"));
         } catch (FileNotFoundException e) {
@@ -112,6 +110,18 @@ public class FXMLController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void goToSearch(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/search.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        CardController card = new CardController();
+        card.listView.getItems().addAll(card.nameList);
     }
 
     @FXML

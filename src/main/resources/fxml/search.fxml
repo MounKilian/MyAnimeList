@@ -3,9 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -50,12 +49,7 @@
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="tableView" editable="true" layoutX="64.0" layoutY="190.0" prefHeight="380.0" prefWidth="956.0" style="-fx-background-color: rgba(36, 37, 42, 1);">
-        <columns>
-          <TableColumn fx:id="tabName" prefWidth="194.66668701171875" text="Name" />
-          <TableColumn fx:id="tabDescription" minWidth="0.0" prefWidth="858.3333129882812" text="Description" />
-        </columns>
-      </TableView>
-      <TextField fx:id="searchFilter" layoutX="64.0" layoutY="127.0" prefHeight="35.0" prefWidth="956.0" promptText="search" />
+      <TextField fx:id="searchFilter" layoutX="64.0" layoutY="127.0" onKeyPressed="#search" prefHeight="35.0" prefWidth="956.0" promptText="search" />
+      <ListView fx:id="listView" layoutX="62.0" layoutY="186.0" onMouseClicked="#switchSceneMenu" prefHeight="384.0" prefWidth="958.0" />
    </children>
 </AnchorPane>

@@ -1,5 +1,7 @@
 package org.example;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,10 +10,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -19,8 +23,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Objects;
-import java.util.Scanner;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CardController {
     private Stage stage;
@@ -49,6 +54,58 @@ public class CardController {
 
     @FXML
     private Button cardButton;
+
+    @FXML
+    ListView<String> listView;
+
+    @FXML
+    private TextField searchFilter;
+
+    ArrayList<String> nameList = new ArrayList<>(
+            Arrays.asList("Chainsaw Man", "Jujutsu Kaisen","L’Attaque Des Titans","One Piece","Solo Leveling","Bucchigiri?!","The Weakest Tamer Began a Journey to Pick Up Trash", "Metallic Rouge","The Demon Prince of Momochi House")
+    );
+
+    @FXML
+    void search(KeyEvent event){
+        listView.getItems().clear();
+        listView.getItems().addAll(searchList(searchFilter.getText(), nameList));
+        listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                Anime anime = null;
+                String toSearch = String.valueOf(listView.getSelectionModel().getSelectedItems()).replace("[", "\r\n").replace("]", "");
+                try {
+                    anime = search(toSearch);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dataAnime.fxml"));
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                CardController cardController = loader.getController();
+                cardController.setData(anime, true);
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
+    }
+
+
+    private List<String> searchList(String searchWords, List<String> listOfStrings) {
+
+        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
+
+        return listOfStrings.stream()
+                .filter(input -> searchWordsArray.stream()
+                        .allMatch(word -> input.toLowerCase().contains(word.toLowerCase())))
+                .sorted()
+                .collect(Collectors.toList());
+    }
 
     public void affect(HBox cardbox){
         cardButton.setId(cardbox.getId());
@@ -145,6 +202,8 @@ public class CardController {
             while (sc1.hasNext()) {
                 Anime anime1 = new Anime();
                 String name = sc1.next();
+                System.out.println("\"" + name);
+                System.out.println("\"" + id);
                 if (Objects.equals(id, name)) {
                     anime1.setName(name);
                     anime1.setType(sc1.next());
@@ -157,7 +216,6 @@ public class CardController {
                 }
             }
         }
-
         try (Scanner sc = new Scanner(new File("dataWinter.csv"))) {
             sc.useDelimiter("<;>");
             while (sc.hasNext()) {
