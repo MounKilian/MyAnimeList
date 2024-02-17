@@ -174,7 +174,6 @@ public class FXMLController implements Initializable {
     @FXML
     void confirmModify(ActionEvent event) throws IOException {
         WriteModif("dataWinter.csv");
-        WriteModif("dataEmblematic.csv");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/primary.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
