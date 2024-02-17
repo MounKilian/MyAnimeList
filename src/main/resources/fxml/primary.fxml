@@ -20,7 +20,7 @@
                <children>
                   <VBox layoutX="29.0" layoutY="85.0" prefHeight="1403.0" prefWidth="1028.0">
                      <children>
-                        <Label prefHeight="118.0" prefWidth="324.0" text="Winter 2024 Anime" textFill="WHITE">
+                        <Label prefHeight="118.0" prefWidth="324.0" text="New 2024 Anime" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="30.0" />
                            </font>
