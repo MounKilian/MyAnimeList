@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
+import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -86,8 +87,6 @@ public class CardController {
 
     @FXML
     private TextField searchFilter;
-
-
 
     ArrayList<String> nameList = new ArrayList<>();
 

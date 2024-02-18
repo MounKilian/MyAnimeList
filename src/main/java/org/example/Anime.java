@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.ObjectInputFilter;
 import java.util.List;
 
 public class Anime {
@@ -11,6 +12,8 @@ public class Anime {
     private String rank;
     private String director;
     private String description;
+
+    private Status status;
 
     public Anime(){}
 
@@ -82,5 +85,13 @@ public class Anime {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
