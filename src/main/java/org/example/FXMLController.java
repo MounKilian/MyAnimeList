@@ -120,7 +120,7 @@ public class FXMLController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        CardController card = new CardController();
+        CardController card = loader.getController();
         card.listView.getItems().addAll(card.nameList);
     }
 

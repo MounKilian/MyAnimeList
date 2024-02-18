@@ -14,6 +14,8 @@ public class Anime {
 
     private String status;
 
+    private String notation;
+
     public Anime(){
     }
 
@@ -93,5 +95,13 @@ public class Anime {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getNotation() {
+        return notation;
+    }
+
+    public void setNotation(String notation) {
+        this.notation = notation;
     }
 }

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="box" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0" prefWidth="303.0" style="-fx-background-color: rgba(21, 20, 19, 1);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.CardController">
+<HBox fx:id="box" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0" prefWidth="303.0" style="-fx-background-color: rgba(21, 20, 19, 1);" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.CardController">
    <children>
       <Button fx:id="cardButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchSceneMenu" prefHeight="383.0" prefWidth="225.0" style="-fx-background-color: rgba(21, 20, 19, 1); -fx-border-color: rgba(21, 20, 19, 1);">
          <graphic>
