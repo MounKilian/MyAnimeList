@@ -1,6 +1,5 @@
 package org.example;
 
-import java.io.ObjectInputFilter;
 import java.util.List;
 
 public class Anime {
@@ -13,9 +12,10 @@ public class Anime {
     private String director;
     private String description;
 
-    private Status status;
+    private String status;
 
-    public Anime(){}
+    public Anime(){
+    }
 
     public Anime(String name, String type, String imgSrc) {
         this.name = name;
@@ -87,11 +87,11 @@ public class Anime {
         this.description = description;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

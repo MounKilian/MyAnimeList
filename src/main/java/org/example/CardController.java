@@ -3,9 +3,11 @@ package org.example;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,16 +19,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class CardController {
+public class CardController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -90,6 +89,11 @@ public class CardController {
 
     ArrayList<String> nameList = new ArrayList<>();
 
+    private ObservableList<String> statusBoxList = FXCollections.observableArrayList("Watching","ToWatch", "Completed", "On-Hold", "Dropped");
+
+    @FXML
+    private ComboBox statusAnime = new ComboBox<>(statusBoxList);
+
     @FXML
     void search(KeyEvent event) throws IOException {
         nameList.clear();
@@ -152,7 +156,11 @@ public class CardController {
                     throw new RuntimeException(e);
                 }
                 CardController cardController = loader.getController();
-                cardController.setData(anime, true);
+                try {
+                    cardController.setData(anime, true);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
@@ -176,7 +184,7 @@ public class CardController {
         cardButton.setId(cardbox.getId());
     }
 
-    public void setData(Anime anime, boolean state){
+    public void setData(Anime anime, boolean state) throws FileNotFoundException {
         InputStream inputStream = getClass().getResourceAsStream(anime.getImgSrc());
         if (inputStream != null) {
             Image image = new Image(inputStream);
@@ -192,6 +200,10 @@ public class CardController {
             animeDirector.setText(anime.getDirector());
             animeRank.setText(anime.getRank());
             animeSeason.setText(anime.getEpisodeAndSeason());
+            Anime anime1;
+            anime1 = searchStatus(String.valueOf(animeName.getText()));
+            System.out.println(anime1.getStatus());
+            statusAnime.setPromptText(anime1.getStatus());
         }
     }
 
@@ -307,5 +319,90 @@ public class CardController {
             }
         }
         return new Anime("Solo Leveling", "Action", "/img/sololeveling.jpg");
+    }
+
+    @FXML
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        statusAnime.setItems(statusBoxList);
+
+        statusAnime.setOnAction(event ->{
+            String data = statusAnime.getSelectionModel().getSelectedItem().toString();
+            try {
+                Anime anime = new Anime();
+                anime = searchStatus(String.valueOf(animeName.getText()));
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                DeleteStatus(String.valueOf(animeName.getText()));
+                WriteStatus(data);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    public List<Anime> ReadStatus() throws FileNotFoundException {
+        List<Anime> card = new ArrayList<>();
+        File getCSVFiles = new File("status.csv");
+        Scanner sc = new Scanner(getCSVFiles);
+        sc.useDelimiter("<;>");
+        while (sc.hasNext()) {
+            Anime anime = new Anime();
+            anime.setName(sc.next());
+            anime.setStatus(sc.next());
+            card.add(anime);
+        }
+        sc.close();
+        return card;
+    }
+
+    public Anime searchStatus(String id) throws FileNotFoundException {
+        try (Scanner sc1 = new Scanner(new File("status.csv"))) {
+            sc1.useDelimiter("<;>");
+            while (sc1.hasNext()) {
+                Anime anime1 = new Anime();
+                String name = sc1.next();
+                if (Objects.equals(id, name)) {
+                    anime1.setName(name);
+                    anime1.setStatus(sc1.next());
+                    return anime1;
+                }
+            }
+        }
+        return new Anime("Solo Leveling", "Action", "/img/sololeveling.jpg");
+    }
+
+    public void WriteStatus(String data) throws FileNotFoundException {
+        List<Anime> animes;
+        animes = ReadStatus();
+        try (PrintWriter writer = new PrintWriter("status.csv")) {
+            StringBuilder sb = new StringBuilder();
+            for (Anime anime : animes) {
+                sb.append(anime.getName()).append('<').append(';').append('>').append(anime.getStatus()).append('<').append(';').append('>');
+            }
+            sb.append(animeName.getText()).append('<').append(';').append('>').append(data).append('<').append(';').append('>');
+            writer.write(sb.toString());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void DeleteStatus(String animeName) throws IOException {
+        List<Anime> animes;
+        animes = ReadStatus();
+        try (PrintWriter writer = new PrintWriter("status.csv")) {
+            StringBuilder sb = new StringBuilder();
+            for (Anime anime : animes) {
+                if (!Objects.equals(anime.getName(), animeName)) {
+                    sb.append(anime.getName()).append('<').append(';').append('>').append(anime.getStatus()).append('<').append(';').append('>');
+                }
+            }
+            writer.write(sb.toString());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
