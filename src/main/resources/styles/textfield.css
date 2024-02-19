@@ -1,0 +1,6 @@
+.text-field {
+    -fx-background-color:   rgba(21, 20, 19, 1);
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: #ff9424;
+    -fx-text-fill: white;
+}

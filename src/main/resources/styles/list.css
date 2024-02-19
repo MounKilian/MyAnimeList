@@ -1,0 +1,21 @@
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: linear-gradient(#333 0%, #777 25%, #aaa 75%, #eee 100%);
+    -fx-text-fill: white;
+}
+
+.list-cell {
+    -fx-text-fill: white;
+}
+
+.list-cell:odd {
+    -fx-background-color: #333;
+}
+
+.list-cell:even {
+    -fx-background-color:  rgba(36, 37, 42, 1);
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: orange;
+    -fx-text-fill: white;
+}

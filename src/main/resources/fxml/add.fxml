@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="1072.0" style="-fx-background-color: rgba(21, 20, 19, 1);" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.FXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1072.0" style="-fx-background-color: rgba(21, 20, 19, 1);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.FXMLController">
    <children>
       <HBox alignment="CENTER" prefHeight="85.0" prefWidth="1057.0" style="-fx-background-color: rgba(36, 37, 42, 1); -fx-border-color: rgba(21, 20, 19, 1);">
          <children>
@@ -51,110 +51,91 @@
       </HBox>
       <HBox fx:id="cardLayout1" prefHeight="0.0" prefWidth="0.0" visible="false" />
       <HBox fx:id="cardLayout" prefHeight="0.0" prefWidth="0.0" visible="false" />
-      <VBox layoutX="29.0" layoutY="94.0" prefHeight="431.0" prefWidth="1016.0">
+      <VBox layoutX="28.0" layoutY="110.0" prefHeight="424.0" prefWidth="1016.0">
          <children>
-            <VBox prefHeight="114.0" prefWidth="1016.0" spacing="5.0">
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="1039.0" text="Name Of Anime" textFill="WHITE">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="animeNameAdd" prefHeight="37.0" prefWidth="828.0" promptText="Name">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
+                  <VBox prefHeight="72.0" prefWidth="782.0" spacing="5.0">
+                     <children>
+                        <TextField fx:id="animeNameAdd" prefHeight="37.0" prefWidth="828.0" promptText="Name" stylesheets="@../styles/textfield.css">
+                           <font>
+                              <Font name="System Italic" size="15.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="72.0" prefWidth="600.0" spacing="5.0">
+                     <children>
+                        <TextField fx:id="animeDirectoryAdd" prefHeight="37.0" prefWidth="402.0" promptText="Directory" stylesheets="@../styles/textfield.css">
+                           <font>
+                              <Font name="System Italic" size="15.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
-            <VBox layoutX="10.0" layoutY="10.0" prefHeight="114.0" prefWidth="1016.0" spacing="5.0">
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="1039.0" text="Directory" textFill="WHITE">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="animeDirectoryAdd" prefHeight="37.0" prefWidth="707.0" promptText="Directory">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
+                  <VBox prefHeight="72.0" prefWidth="851.0" spacing="5.0">
+                     <children>
+                        <TextField fx:id="animeGenreAdd" prefHeight="37.0" prefWidth="707.0" promptText="Genre" stylesheets="@../styles/textfield.css">
+                           <font>
+                              <Font name="System Italic" size="15.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="72.0" prefWidth="864.0" spacing="5.0">
+                     <children>
+                        <TextField fx:id="animeSeasonAdd" prefHeight="37.0" prefWidth="707.0" promptText="Season" stylesheets="@../styles/textfield.css">
+                           <font>
+                              <Font name="System Italic" size="15.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
-            <VBox layoutX="10.0" layoutY="10.0" prefHeight="114.0" prefWidth="1016.0" spacing="5.0">
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="1039.0" text="Genre" textFill="WHITE">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="animeGenreAdd" prefHeight="37.0" prefWidth="707.0" promptText="Genre">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
+                  <VBox prefHeight="100.0" prefWidth="981.0" spacing="5.0">
+                     <children>
+                        <TextField fx:id="animeRankedAdd" prefHeight="37.0" prefWidth="828.0" promptText="Ranked" stylesheets="@../styles/textfield.css">
+                           <font>
+                              <Font name="System Italic" size="15.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="102.0" prefWidth="802.0" spacing="5.0">
+                     <children>
+                        <TextField fx:id="animeImgAdd" prefHeight="40.0" prefWidth="302.0" promptText="Image" stylesheets="@../styles/textfield.css">
+                           <font>
+                              <Font name="System Italic" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#animeImg" prefHeight="25.0" prefWidth="108.0" stylesheets="@../styles/buttun.css" text="IMPORT">
+                           <VBox.margin>
+                              <Insets left="300.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
-            <VBox layoutX="10.0" layoutY="10.0" prefHeight="114.0" prefWidth="1016.0" spacing="5.0">
-               <children>
-                  <Label prefHeight="20.0" prefWidth="1039.0" text="Season" textFill="WHITE">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="animeSeasonAdd" prefHeight="37.0" prefWidth="707.0" promptText="Season">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </VBox>
-            <VBox layoutX="10.0" layoutY="347.0" prefHeight="114.0" prefWidth="1016.0" spacing="5.0">
-               <children>
-                  <Label prefHeight="20.0" prefWidth="1039.0" text="Ranked" textFill="WHITE">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="animeRankedAdd" prefHeight="37.0" prefWidth="707.0" promptText="Ranked">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </VBox>
+            </HBox>
             <VBox layoutX="10.0" layoutY="355.0" prefHeight="114.0" prefWidth="1016.0" spacing="5.0">
                <children>
-                  <Label fx:id="n" prefHeight="20.0" prefWidth="1039.0" text="Description" textFill="WHITE">
+                  <TextField fx:id="animeDescriptionAdd" prefHeight="69.0" prefWidth="1016.0" promptText="Description" stylesheets="@../styles/textfield.css">
                      <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="animeDescriptionAdd" prefHeight="37.0" prefWidth="707.0" promptText="Description">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </VBox>
-            <VBox layoutX="10.0" layoutY="370.0" prefHeight="114.0" prefWidth="1016.0" spacing="5.0">
-               <children>
-                  <Label fx:id="n1" prefHeight="20.0" prefWidth="1039.0" text="Img" textFill="WHITE">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Label>
-                  <Button mnemonicParsing="false" onAction="#animeImg" prefHeight="25.0" prefWidth="1036.0" text="Img" />
-                  <TextField fx:id="animeImgAdd" prefHeight="37.0" prefWidth="707.0" promptText="Description">
-                     <font>
-                        <Font size="15.0" />
+                        <Font name="System Italic" size="15.0" />
                      </font>
                   </TextField>
                </children>
             </VBox>
          </children>
       </VBox>
-      <Button alignment="CENTER" layoutX="494.0" layoutY="607.0" mnemonicParsing="false" onAction="#add" text="ADD" textAlignment="CENTER">
+      <Button alignment="CENTER" layoutX="401.0" layoutY="515.0" mnemonicParsing="false" onAction="#add" prefHeight="45.0" prefWidth="250.0" stylesheets="@../styles/buttun.css" text="ADD" textAlignment="CENTER">
          <font>
             <Font size="21.0" />
          </font>

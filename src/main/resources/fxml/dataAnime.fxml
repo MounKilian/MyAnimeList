@@ -84,8 +84,8 @@
                               </Label>
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                  <children>
-                                    <ComboBox fx:id="statusAnime" prefWidth="150.0" promptText="ToWatch" />
-                                    <ComboBox fx:id="notationAnime" prefWidth="150.0" />
+                                    <ComboBox fx:id="statusAnime" prefWidth="150.0" promptText="ToWatch" stylesheets="@../styles/comboBox.css" />
+                                    <ComboBox fx:id="notationAnime" prefWidth="150.0" stylesheets="@../styles/comboBox.css" />
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="50.0" left="20.0" />
@@ -93,12 +93,12 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                  <children>
-                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#delete" prefHeight="39.0" prefWidth="109.0" text="DELETE" textAlignment="CENTER">
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#delete" prefHeight="45.0" prefWidth="145.0" stylesheets="@../styles/buttun.css" text="DELETE" textAlignment="CENTER">
                                        <font>
                                           <Font size="21.0" />
                                        </font>
                                     </Button>
-                                    <Button alignment="CENTER" layoutX="354.0" layoutY="14.0" mnemonicParsing="false" onAction="#modify" prefHeight="39.0" prefWidth="109.0" text="MODIFY" textAlignment="CENTER">
+                                    <Button alignment="CENTER" layoutX="354.0" layoutY="14.0" mnemonicParsing="false" onAction="#modify" prefHeight="45.0" prefWidth="145.0" stylesheets="@../styles/buttun.css" text="MODIFY" textAlignment="CENTER">
                                        <font>
                                           <Font size="21.0" />
                                        </font>
