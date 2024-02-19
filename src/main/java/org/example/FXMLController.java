@@ -1,9 +1,6 @@
 package org.example;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.URL;
 import java.util.*;
 
@@ -15,8 +12,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class FXMLController implements Initializable {
@@ -42,7 +41,13 @@ public class FXMLController implements Initializable {
     private TextField animeSeasonAdd;
 
     @FXML
+    private TextField animeImgAdd;
+
+    @FXML
     TextField animeDescriptionModify;
+
+    @FXML
+    TextField animeImgModify;
 
     @FXML
     TextField animeDirectoryModify;
@@ -164,12 +169,29 @@ public class FXMLController implements Initializable {
                 sb.append(anime.getName()).append('<').append(';').append('>').append(anime.getType()).append('<').append(';').append('>').append(anime.getImgSrc()).append('<').append(';').append('>').append(anime.getEpisodeAndSeason()).append('<').append(';').append('>').append(anime.getRank()).append('<').append(';').append('>').append(anime.getDirector()).append('<').append(';').append('>').append(anime.getDescription()).append('<').append(';').append('>');
             }
             sb.append("\r\n");
-            sb.append(animeNameAdd.getText()).append('<').append(';').append('>').append(animeGenreAdd.getText()).append('<').append(';').append('>').append("/img/logo.png").append('<').append(';').append('>').append(animeSeasonAdd.getText()).append('<').append(';').append('>').append(animeRankedAdd.getText()).append('<').append(';').append('>').append(animeDirectoryAdd.getText()).append('<').append(';').append('>').append(animeDescriptionAdd.getText()).append('<').append(';').append('>');
+            sb.append(animeNameAdd.getText()).append('<').append(';').append('>').append(animeGenreAdd.getText()).append('<').append(';').append('>').append(animeImgAdd.getText()).append('<').append(';').append('>').append(animeSeasonAdd.getText()).append('<').append(';').append('>').append(animeRankedAdd.getText()).append('<').append(';').append('>').append(animeDirectoryAdd.getText()).append('<').append(';').append('>').append(animeDescriptionAdd.getText()).append('<').append(';').append('>');
             writer.write(sb.toString());
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
     }
+
+    @FXML
+    void animeImg(ActionEvent event) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(new Stage());
+        String imagePath = file.getName();
+        animeImgAdd.setText("/img/" + imagePath);
+    }
+
+    @FXML
+    void animeImgModify(ActionEvent event) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(new Stage());
+        String imagePath = file.getName();
+        animeImgModify.setText("/img/" + imagePath);
+    }
+
 
     @FXML
     void confirmModify(ActionEvent event) throws IOException {
@@ -191,7 +213,7 @@ public class FXMLController implements Initializable {
                 sb.append(anime.getName()).append('<').append(';').append('>').append(anime.getType()).append('<').append(';').append('>').append(anime.getImgSrc()).append('<').append(';').append('>').append(anime.getEpisodeAndSeason()).append('<').append(';').append('>').append(anime.getRank()).append('<').append(';').append('>').append(anime.getDirector()).append('<').append(';').append('>').append(anime.getDescription()).append('<').append(';').append('>');
             }
             sb.append("\r\n");
-            sb.append(animeNameModify.getText()).append('<').append(';').append('>').append(animeGenreModify.getText()).append('<').append(';').append('>').append("/img/logo.png").append('<').append(';').append('>').append(animeSeasonModify.getText()).append('<').append(';').append('>').append(animeRankedModify.getText()).append('<').append(';').append('>').append(animeDirectoryModify.getText()).append('<').append(';').append('>').append(animeDescriptionModify.getText()).append('<').append(';').append('>');
+            sb.append(animeNameModify.getText()).append('<').append(';').append('>').append(animeGenreModify.getText()).append('<').append(';').append('>').append(animeImgModify.getText()).append('<').append(';').append('>').append(animeSeasonModify.getText()).append('<').append(';').append('>').append(animeRankedModify.getText()).append('<').append(';').append('>').append(animeDirectoryModify.getText()).append('<').append(';').append('>').append(animeDescriptionModify.getText()).append('<').append(';').append('>');
             writer.write(sb.toString());
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());

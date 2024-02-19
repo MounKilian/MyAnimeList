@@ -225,6 +225,7 @@ public class CardController implements Initializable {
         fxmlController.animeSeasonModify.setText(anime.getEpisodeAndSeason());
         fxmlController.animeRankedModify.setText(anime.getRank());
         fxmlController.animeDescriptionModify.setText(anime.getDescription());
+        fxmlController.animeImgModify.setText(anime.getImgSrc());
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

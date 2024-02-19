@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1072.0" style="-fx-background-color: rgba(21, 20, 19, 1);" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.FXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="1072.0" style="-fx-background-color: rgba(21, 20, 19, 1);" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.FXMLController">
    <children>
       <HBox alignment="CENTER" prefHeight="85.0" prefWidth="1057.0" style="-fx-background-color: rgba(36, 37, 42, 1); -fx-border-color: rgba(21, 20, 19, 1);">
          <children>
@@ -137,9 +137,24 @@
                   </TextField>
                </children>
             </VBox>
+            <VBox layoutX="10.0" layoutY="370.0" prefHeight="114.0" prefWidth="1016.0" spacing="5.0">
+               <children>
+                  <Label fx:id="n1" prefHeight="20.0" prefWidth="1039.0" text="Img" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#animeImg" prefHeight="25.0" prefWidth="1036.0" text="Img" />
+                  <TextField fx:id="animeImgAdd" prefHeight="37.0" prefWidth="707.0" promptText="Description">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
          </children>
       </VBox>
-      <Button alignment="CENTER" layoutX="475.0" layoutY="534.0" mnemonicParsing="false" onAction="#add" text="ADD" textAlignment="CENTER">
+      <Button alignment="CENTER" layoutX="494.0" layoutY="607.0" mnemonicParsing="false" onAction="#add" text="ADD" textAlignment="CENTER">
          <font>
             <Font size="21.0" />
          </font>
