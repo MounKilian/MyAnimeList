@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1072.0" style="-fx-background-color: rgba(21, 20, 19, 1);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.CardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1072.0" style="-fx-background-color: rgba(21, 20, 19, 1);" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.CardController">
    <children>
       <Button fx:id="cardButton" alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="95.0" mnemonicParsing="false" prefHeight="435.0" prefWidth="1050.0" style="-fx-background-color: rgba(21, 20, 19, 1); -fx-border-color: rgba(21, 20, 19, 1);" textAlignment="CENTER">
          <graphic>
