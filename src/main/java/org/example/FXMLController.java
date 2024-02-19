@@ -1,17 +1,21 @@
 package org.example;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.*;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class FXMLController implements Initializable {
@@ -19,14 +23,56 @@ public class FXMLController implements Initializable {
     private Scene scene;
     private Parent root;
     @FXML
+    private TextField animeDescriptionAdd;
+
+    @FXML
+    private TextField animeDirectoryAdd;
+
+    @FXML
+    private TextField animeGenreAdd;
+
+    @FXML
+    private TextField animeNameAdd;
+
+    @FXML
+    private TextField animeRankedAdd;
+
+    @FXML
+    private TextField animeSeasonAdd;
+
+    @FXML
+    private TextField animeImgAdd;
+
+    @FXML
+    TextField animeDescriptionModify;
+
+    @FXML
+    TextField animeImgModify;
+
+    @FXML
+    TextField animeDirectoryModify;
+
+    @FXML
+    TextField animeGenreModify;
+
+    @FXML
+    TextField animeNameModify;
+
+    @FXML
+    TextField animeRankedModify;
+
+    @FXML
+    TextField animeSeasonModify;
+
+    @FXML
     private HBox cardLayout;
+
     @FXML
     private HBox cardLayout1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Anime anime = null;
-        anime = new Anime();
+        Anime anime = new Anime();
         try {
             anime.setAnime(Read("dataWinter.csv"));
         } catch (FileNotFoundException e) {
@@ -47,7 +93,7 @@ public class FXMLController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        i=0;
+        i = 0;
         Anime anime1 = null;
         anime1 = new Anime();
         try {
@@ -71,11 +117,138 @@ public class FXMLController implements Initializable {
         }
     }
 
+    @FXML
+    void goToSearch(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/search.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        CardController card = loader.getController();
+        card.listView.getItems().addAll(card.nameList);
+    }
+
+    @FXML
+    void goToMyList(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void backToHomePage(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/primary.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void add(ActionEvent event) throws IOException {
+        Write("dataWinter.csv");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/primary.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void Write(String filename) throws FileNotFoundException {
+        List<Anime> animes;
+        animes = Read(filename);
+        try (PrintWriter writer = new PrintWriter(filename)) {
+            StringBuilder sb = new StringBuilder();
+            for (Anime anime : animes) {
+                sb.append(anime.getName()).append('<').append(';').append('>').append(anime.getType()).append('<').append(';').append('>').append(anime.getImgSrc()).append('<').append(';').append('>').append(anime.getEpisodeAndSeason()).append('<').append(';').append('>').append(anime.getRank()).append('<').append(';').append('>').append(anime.getDirector()).append('<').append(';').append('>').append(anime.getDescription()).append('<').append(';').append('>');
+            }
+            sb.append("\r\n");
+            sb.append(animeNameAdd.getText()).append('<').append(';').append('>').append(animeGenreAdd.getText()).append('<').append(';').append('>').append(animeImgAdd.getText()).append('<').append(';').append('>').append(animeSeasonAdd.getText()).append('<').append(';').append('>').append(animeRankedAdd.getText()).append('<').append(';').append('>').append(animeDirectoryAdd.getText()).append('<').append(';').append('>').append(animeDescriptionAdd.getText()).append('<').append(';').append('>');
+            writer.write(sb.toString());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    void animeImg(ActionEvent event) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(new Stage());
+        String imagePath = file.getName();
+        animeImgAdd.setText("/img/" + imagePath);
+    }
+
+    @FXML
+    void animeImgModify(ActionEvent event) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(new Stage());
+        String imagePath = file.getName();
+        animeImgModify.setText("/img/" + imagePath);
+    }
+
+
+    @FXML
+    void confirmModify(ActionEvent event) throws IOException {
+        WriteModif("dataWinter.csv");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/primary.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void WriteModif(String filename) throws FileNotFoundException {
+        List<Anime> animes;
+        animes = Read(filename);
+        try (PrintWriter writer = new PrintWriter(filename)) {
+            StringBuilder sb = new StringBuilder();
+            for (Anime anime : animes) {
+                sb.append(anime.getName()).append('<').append(';').append('>').append(anime.getType()).append('<').append(';').append('>').append(anime.getImgSrc()).append('<').append(';').append('>').append(anime.getEpisodeAndSeason()).append('<').append(';').append('>').append(anime.getRank()).append('<').append(';').append('>').append(anime.getDirector()).append('<').append(';').append('>').append(anime.getDescription()).append('<').append(';').append('>');
+            }
+            sb.append("\r\n");
+            sb.append(animeNameModify.getText()).append('<').append(';').append('>').append(animeGenreModify.getText()).append('<').append(';').append('>').append(animeImgModify.getText()).append('<').append(';').append('>').append(animeSeasonModify.getText()).append('<').append(';').append('>').append(animeRankedModify.getText()).append('<').append(';').append('>').append(animeDirectoryModify.getText()).append('<').append(';').append('>').append(animeDescriptionModify.getText()).append('<').append(';').append('>');
+            writer.write(sb.toString());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void Delete(String filename, String animeName, ActionEvent event, boolean modify) throws IOException {
+        List<Anime> animes;
+        animes = Read(filename);
+        try (PrintWriter writer = new PrintWriter(filename)) {
+            StringBuilder sb = new StringBuilder();
+            for (Anime anime : animes) {
+                if (!Objects.equals(anime.getName(), animeName)) {
+                    sb.append(anime.getName()).append('<').append(';').append('>').append(anime.getType()).append('<').append(';').append('>').append(anime.getImgSrc()).append('<').append(';').append('>').append(anime.getEpisodeAndSeason()).append('<').append(';').append('>').append(anime.getRank()).append('<').append(';').append('>').append(anime.getDirector()).append('<').append(';').append('>').append(anime.getDescription()).append('<').append(';').append('>');
+                }
+            }
+            writer.write(sb.toString());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        if (filename.equals("dataEmblematic.csv") && !modify){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/primary.fxml"));
+            root = loader.load();
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
     public List<Anime> Read(String filename) throws FileNotFoundException {
         List<Anime> card = new ArrayList<>();
         File getCSVFiles = new File(filename);
         Scanner sc = new Scanner(getCSVFiles);
-        sc.useDelimiter(";");
+        sc.useDelimiter("<;>");
         while (sc.hasNext()) {
             Anime anime = new Anime();
             anime.setName(sc.next());

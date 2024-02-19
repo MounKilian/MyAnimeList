@@ -1,10 +1,6 @@
 package org.example;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Anime {
     private List<Anime> anime;
@@ -16,7 +12,12 @@ public class Anime {
     private String director;
     private String description;
 
-    public Anime(){}
+    private String status;
+
+    private String notation;
+
+    public Anime(){
+    }
 
     public Anime(String name, String type, String imgSrc) {
         this.name = name;
@@ -86,5 +87,21 @@ public class Anime {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getNotation() {
+        return notation;
+    }
+
+    public void setNotation(String notation) {
+        this.notation = notation;
     }
 }

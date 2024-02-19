@@ -15,21 +15,21 @@
 {
     -fx-background-color:  rgba(21, 20, 19, 1);
     -fx-border-color:  rgba(21, 20, 19, 1);
-    -fx-background-radius: 0em;
-    -fx-border-radius: 2em;
+    -fx-background-radius: 0;
+    -fx-border-radius: 2;
 }
 
 .scroll-pane .scroll-bar:vertical .decrement-button
 {
     -fx-background-color:  rgba(21, 20, 19, 1);
-    -fx-background-radius: 0em;
+    -fx-background-radius: 0;
     -fx-padding: 0 0 10 0;
 }
 
 .scroll-pane .scroll-bar:vertical .decrement-button
 {
     -fx-background-color:  rgba(21, 20, 19, 1);
-    -fx-background-radius: 0rem;
+    -fx-background-radius: 0;
     -fx-padding: 0 10 0 0;
 }
 
@@ -43,5 +43,5 @@
 {
     -fx-background-color: derive(black, 30%);
     -fx-background-insets: 2 0 0;
-    -fx-background-radius: 2em;
+    -fx-background-radius: 2;
 }
